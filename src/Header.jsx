@@ -199,24 +199,24 @@ const Header = () => {
   const blogs = useBlogData();
 
   return (
-    <div className="sticky z-[999] top-0 bg-white w-[100vw] px-4 max-w-[1700px] mx-auto">
+    <div className="sticky z-[999] top-0 bg-white w-full px-2 sm:px-4 max-w-[1700px] mx-auto">
       <div className="sticky z-[999] top-0 bg-white">
-        <div className="flex w-full px-4 items-center justify-between bg-white">
+        <div className="flex w-full px-2 sm:px-4 py-2 sm:py-0 items-center justify-between bg-white">
           <NavLink to='/'>
             <div className="flex items-center">
-              <span className="text-2xl font-bold tracking-tight text-zinc-900">Eco</span>
-              <span className="text-2xl font-bold tracking-tight text-[#1F5555]">Space</span>
-              <span className="text-xl font-medium tracking-tight text-zinc-600 ml-1">Infera</span>
+              <span className="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900">Eco</span>
+              <span className="text-lg sm:text-2xl font-bold tracking-tight text-[#1F5555]">Space</span>
+              <span className="text-base sm:text-xl font-medium tracking-tight text-zinc-600 ml-1">Infera</span>
             </div>
           </NavLink>
           <i
-            className={`menu text-[4.5vw] cursor-pointer sm:text-[1.8rem] lg:hidden transition-all duration-300 ${menuToggle ? 'ri-close-line' : 'ri-menu-line'
+            className={`menu text-[6vw] cursor-pointer sm:text-[1.8rem] lg:hidden transition-all duration-300 ${menuToggle ? 'ri-close-line' : 'ri-menu-line'
               }`}
             onClick={menuClick}
           ></i>
 
-          <div className="hidden md:hidden lg:flex w-[70%] md:justify-between">
-            <ul className="flex items-center gap-6 lg:gap-8">
+          <div className="hidden md:hidden lg:flex w-[70%] justify-between">
+            <ul className="flex items-center gap-4 lg:gap-6 xl:gap-8">
               <li
                 onClick={handleServiceToggle}
                 className="cursor-pointer text-[1.1rem] p-2 border-b-2 border-transparent hover:border-[#1F5555] hover:bg-[#FFF9E6] rounded-t-md transition-all duration-300"
@@ -294,15 +294,15 @@ const Header = () => {
               </li>
             </ul>
 
-            <button className="px-4 rounded-lg py-2 text-[1rem] border border-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-300 w-fit cursor-pointer">
-              <i className="ri-quote-text mr-2"></i>Get Free Quote
+            <button className="px-3 lg:px-4 rounded-lg py-1.5 lg:py-2 text-[0.9rem] lg:text-[1rem] border border-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-300 w-fit cursor-pointer whitespace-nowrap">
+              <i className="ri-quote-text mr-1 lg:mr-2"></i>Get Free Quote
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div className="mt-3 bg-white h-0 overflow-hidden transition-all duration-300" ref={slideMenu}>
-          <ul className="mobileMenu px-4 flex flex-col gap-4 sm:gap-2 pb-4">
+        <div className="mt-2 sm:mt-3 bg-white h-0 overflow-hidden overflow-y-auto max-h-[80vh] transition-all duration-300" ref={slideMenu}>
+          <ul className="mobileMenu px-3 sm:px-4 flex flex-col gap-3 sm:gap-2 pb-4">
             <li
               className="text-[1rem] border-b-[2px] sm:text-[1.2rem] border-transparent hover:border-[#FCB714] p-2 rounded-md transition-all duration-200"
               onClick={serviceClick}

@@ -72,15 +72,15 @@ const Home = () => {
   // yaha sy upper ka code desktop wlay menu kay process item ka hy
   return (
     <div className="relative ">
+      <div id="main-header" className="fixed left-0 w-[100vw] pr-2 z-[9999]" style={{ top: '-300px' }}>
+        <Header />
+      </div>
 
       <div className="h-[100vh] w-[100vw]">
         <Hero />
       </div>
       <div className="main py-3 mx-auto max-w-[1700px]">
-        {/* ye Header ka code hy  */}
-        <div className="header w-[100vw] pr-2">
-          <Header />
-
+        <div className="w-[100vw] pr-2">
           <Page1 />
           <Solutions />
           <Dev />
