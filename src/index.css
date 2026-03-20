@@ -111,26 +111,6 @@ body{
     text-align: center;
   }
 }
-@media(min-width: 390px) and (max-width: 589px){
-  .hello{
-    right: -30%;
-  }
-  .hello h1{
-    font-size: 7rem;
-  }
-  .mini-head svg{
-    width: 1.5rem;
-  }
-  .mini-head h3{
-    font-size: 1.5rem;
-  }
-  .head-para h1{
-    font-size: 1.9rem;
-  }
-  .head-para p{
-    font-size: 1.1rem;
-  }
-}
 @media(min-width: 500px) and (max-width: 639px){
   .menu{
     font-size: 37px;
@@ -144,30 +124,4 @@ body{
   .slide-para{
     font-size: 1rem;
   }
-}
-@media(min-width: 590px ) and (max-width: 639px){
-  .hello{
-    right: -40%;
-  }
-  .hello h1{
-    font-size: 7rem;
-  }
-  .mini-head svg{
-    width: 1.5rem;
-  }
-  .mini-head h3{
-    font-size: 1.5rem;
-  }
-  .head-para h1{
-    font-size: 1.9rem;
-  }
-  .head-para p{
-    font-size: 1.1rem;
-  }
-}
-
-@media(min-width: 1200px){
-  .hello{
-    right: -10%;
-  }
-}
+}

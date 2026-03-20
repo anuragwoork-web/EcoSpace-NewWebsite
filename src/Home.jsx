@@ -12,6 +12,8 @@ import FormPage from "./components/form/FormPage";
 import Solutions from "./components/solution/Solutions";
 import Dev from "./components/deve/Dev";
 import Latest from "./components/latest/Latest";
+import AboutSection from "./components/AboutSection";
+import SectorsSection from "./components/SectorsSection";
 import Header from './Header'
 const Home = () => {
   let service = useRef();
@@ -81,10 +83,12 @@ const Home = () => {
       </div>
       <div className="main py-3 mx-auto max-w-[1700px]">
         <div className="w-[100vw] pr-2">
+          <AboutSection />
+          <CardPage />
+          <SectorsSection />
           <Page1 />
           <Solutions />
           <Dev />
-          <CardPage />
           <Latest />
         </div>
       </div>
