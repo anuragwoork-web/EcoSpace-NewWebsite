@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import logo from "./assets/logo.png";
+import logo from "./assets/logo/eco.jpg";
 import ServiceHead from "./components/service/ServiceHead";
 import ServiceItem from "./components/service/ServiceItem";
 import menu from "./assets/menu.png";
@@ -58,68 +58,7 @@ const Header = () => {
     }
   ];
 
-  // Process items data
-  const processItems = [
-    { name: "Fixed Cost Project", icon: "ri-price-tag-3-line" },
-    { name: "Talent On Demand", icon: "ri-team-line" },
-    { name: "Product Engineering", icon: "ri-tools-line" }
-  ];
-
-  let service = useRef();
-  let items = useRef();
-  let outerDiv = useRef();
-  let [toggle, setToggle] = useState(false);
-
-  let serviceClick = () => {
-    let dupToggle = !toggle;
-    setToggle(dupToggle);
-
-    // Close process menu when service opens
-    if (dupToggle && toggle2) {
-      setToggle2(false);
-      process.current.style.borderBottom = "2px solid transparent";
-      proItems.current.style.height = "0px";
-      proItems.current.style.paddingBottom = "0px";
-    }
-
-    if (dupToggle) {
-      service.current.style.borderBottom = "2px solid #1F5555";
-      items.current.style.height = "fit-content";
-      outerDiv.current.style.height = "70vh";
-    } else {
-      service.current.style.borderBottom = "2px solid transparent";
-      items.current.style.height = "0px";
-      outerDiv.current.style.height = "0px";
-    }
-  };
-
-  let [toggle2, setToggle2] = useState(false);
-  let process = useRef();
-  let proItems = useRef();
-
-  let processClick = () => {
-    let dupli2Toggle = !toggle2;
-    setToggle2(dupli2Toggle);
-
-    // Close service menu when process opens
-    if (dupli2Toggle && toggle) {
-      setToggle(false);
-      service.current.style.borderBottom = "2px solid transparent";
-      items.current.style.height = "0px";
-      outerDiv.current.style.height = "0px";
-    }
-
-    if (dupli2Toggle) {
-      process.current.style.borderBottom = "2px solid #1F5555";
-      proItems.current.style.height = "fit-content";
-      proItems.current.style.paddingBottom = "5px";
-    } else {
-      process.current.style.borderBottom = "2px solid transparent";
-      proItems.current.style.height = "0px";
-      proItems.current.style.paddingBottom = "0px";
-    }
-  };
-
+  // Ref for mobile menu animation
   let slideMenu = useRef();
   let [menuToggle, setMenuToggle] = useState(false);
 
@@ -133,254 +72,174 @@ const Header = () => {
     }
   };
 
+  // Desktop Dropdown States
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isServiceOpen, setIsServiceOpen] = useState(false);
-  const [isProcessOpen, setIsProcessOpen] = useState(false);
+  const [isSectorsOpen, setIsSectorsOpen] = useState(false);
 
-  // Close process when service opens and vice versa
+  const handleAboutToggle = () => {
+    setIsAboutOpen(prev => !prev);
+    setIsServiceOpen(false);
+    setIsSectorsOpen(false);
+  };
+
   const handleServiceToggle = () => {
     setIsServiceOpen(prev => !prev);
-    if (!isServiceOpen) {
-      setIsProcessOpen(false);
-    }
+    setIsAboutOpen(false);
+    setIsSectorsOpen(false);
   };
 
-  const handleProcessToggle = () => {
-    setIsProcessOpen(prev => !prev);
-    if (!isProcessOpen) {
-      setIsServiceOpen(false);
-    }
+  const handleSectorsToggle = () => {
+    setIsSectorsOpen(prev => !prev);
+    setIsAboutOpen(false);
+    setIsServiceOpen(false);
   };
 
-  const blogList = useRef();
-  const [blogToggle, setblogToggle] = useState(false);
-
-  let blogClick = () => {
-    let blog = !blogToggle;
-    setblogToggle(blog)
-    if (blog) {
-      blogList.current.style.height = "fit-content";
-    } else {
-      blogList.current.style.height = "0px";
-    }
-  }
-
-  let deskBlog = useRef();
-  let [DeskBlogToggle, setDeskBlogToggle] = useState(false);
-
-  let deskBlogHandler = () => {
-    let deskToggle = !DeskBlogToggle;
-    setDeskBlogToggle(deskToggle);
-    if (deskToggle) {
-      deskBlog.current.style.display = "inline";
-      deskBlog.current.style.height = "fit-content";
-      deskBlog.current.style.border = '1px solid #a1a1aa';
-    }
-    else {
-      deskBlog.current.style.display = "none";
-      deskBlog.current.style.height = "0px";
-      deskBlog.current.style.border = 'transparent';
-    }
-  }
-
-  let mobBlogList = useRef();
-  let [MobBlogToggle, setMobkBlogToggle] = useState(false);
-
-  let mobBlogHandler = () => {
-    let switchToggle = !MobBlogToggle;
-    setMobkBlogToggle(switchToggle);
-    if (switchToggle) {
-      mobBlogList.current.style.height = "fit-content";
-    }
-    else {
-      mobBlogList.current.style.height = "0px";
-    }
-  }
+  // Mobile Dropdown States
+  const [mobAboutToggle, setMobAboutToggle] = useState(false);
+  const [mobServiceToggle, setMobServiceToggle] = useState(false);
+  const [mobSectorsToggle, setMobSectorsToggle] = useState(false);
 
   const blogs = useBlogData();
 
   return (
-    <div className="sticky z-[999] top-0 bg-white w-full px-2 sm:px-4 max-w-[1700px] mx-auto">
-      <div className="sticky z-[999] top-0 bg-white">
-        <div className="flex w-full px-2 sm:px-4 py-2 sm:py-0 items-center justify-between bg-white">
-          <NavLink to='/'>
-            <div className="flex items-center">
-              <span className="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900">Eco</span>
-              <span className="text-lg sm:text-2xl font-bold tracking-tight text-[#1F5555]">Space</span>
-              <span className="text-base sm:text-xl font-medium tracking-tight text-zinc-600 ml-1">Infera</span>
-            </div>
-          </NavLink>
-          <i
-            className={`menu text-[6vw] cursor-pointer sm:text-[1.8rem] lg:hidden transition-all duration-300 ${menuToggle ? 'ri-close-line' : 'ri-menu-line'
-              }`}
-            onClick={menuClick}
-          ></i>
+    <div className="sticky z-[999] top-0 bg-white w-full border-b border-zinc-100">
+      <div className="flex w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-1 items-center justify-between">
+        <NavLink to='/'>
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="EcoSpace Logo" className="h-10 sm:h-12 lg:h-16 w-auto" />
+          </div>
+        </NavLink>
 
-          <div className="hidden md:hidden lg:flex w-[70%] justify-between">
-            <ul className="flex items-center gap-4 lg:gap-6 xl:gap-8">
-              <li
-                onClick={handleServiceToggle}
-                className="cursor-pointer text-[1.1rem] p-2 border-b-2 border-transparent hover:border-[#1F5555] hover:bg-[#FFF9E6] rounded-t-md transition-all duration-300"
-              >
-                <i className="ri-tools-fill mr-2"></i>Services
-                <i className={`ri-arrow-down-s-fill ml-1 transition-transform duration-300 ${isServiceOpen ? 'rotate-180' : ''}`}></i>
-                {isServiceOpen && (
-                  <div className="bg-white border border-zinc-200 shadow-lg absolute top-[100%] left-[20%] grid grid-cols-3 px-4 py-4 gap-5 lg:gap-10 rounded-md">
-                    {serviceCategories.map((category, index) => (
-                      <ul key={index}>
-                        <h3 className="text-[1rem] mb-2 font-semibold text-gray-800">
-                          <i className={`${category.icon} mr-2 text-[#1F5555]`}></i>{category.title}
-                        </h3>
-                        {category.items.map((item, idx) => (
-                          <li key={idx} className="text-[0.9rem] ml-3 mb-1 hover:text-[#1F5555] cursor-pointer transition-colors">
-                            <i className={`${item.icon} mr-2`}></i>{item.name}
-                          </li>
-                        ))}
-                      </ul>
-                    ))}
-                    <div className="flex justify-center mt-[-2rem] items-center">
-                      <img className="h-[10rem]" src={menu} alt="Menu Image" />
-                    </div>
-                  </div>
-                )}
-              </li>
+        {/* Mobile Menu Icon */}
+        <i
+          className={`menu text-[6vw] cursor-pointer sm:text-[1.8rem] lg:hidden transition-all duration-300 ${menuToggle ? 'ri-close-line' : 'ri-menu-line'}`}
+          onClick={menuClick}
+        ></i>
 
-              <li
-                onClick={handleProcessToggle}
-                className="relative cursor-pointer text-[1.1rem] p-2 border-b-2 border-transparent hover:border-[#1F5555] hover:bg-[#FFF9E6] rounded-t-md transition-all duration-300"
-              >
-                <i className="ri-settings-3-line mr-2"></i>Process
-                <i className={`ri-arrow-down-s-fill ml-1 transition-transform duration-300 ${isProcessOpen ? 'rotate-180' : ''}`}></i>
-                {isProcessOpen && (
-                  <div className="absolute top-[180%] bg-white border border-zinc-200 shadow-lg z-50 rounded-md min-w-[250px]">
-                    <ul className="flex flex-col">
-                      {processItems.map((item, index) => (
-                        <li key={index} className="flex items-center gap-3 px-4 py-3 hover:bg-[#FFF9E6] cursor-pointer transition-colors">
-                          <i className={`${item.icon} text-[#1F5555]`}></i>{item.name}
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <ul className="flex items-center gap-4 xl:gap-8 font-bold text-zinc-800 text-[0.9rem] xl:text-[0.95rem]">
+            <li className="cursor-pointer hover:text-[#1F5555] transition-all">
+              <NavLink to="/">Home</NavLink>
+            </li>
+
+            <li onClick={handleAboutToggle} className="relative cursor-pointer hover:text-[#1F5555] transition-all flex items-center">
+              About Us <i className={`ri-arrow-down-s-line ml-0.5 transition-all ${isAboutOpen ? 'rotate-180' : ''}`}></i>
+              {isAboutOpen && (
+                <div className="absolute top-[150%] left-0 bg-white border border-zinc-200 shadow-xl rounded-md py-2 min-w-[180px] z-[999]">
+                  <ul className="flex flex-col font-medium">
+                    <li className="px-4 py-2 hover:bg-[#FFF9E6] hover:text-[#1F5555]">Company Overview</li>
+                    <li className="px-4 py-2 hover:bg-[#FFF9E6] hover:text-[#1F5555]">Our Mission</li>
+                    <li className="px-4 py-2 hover:bg-[#FFF9E6] hover:text-[#1F5555]">Our Vision</li>
+                  </ul>
+                </div>
+              )}
+            </li>
+
+            <li onClick={handleServiceToggle} className="relative cursor-pointer hover:text-[#1F5555] transition-all flex items-center">
+              Services <i className={`ri-arrow-down-s-line ml-0.5 transition-all ${isServiceOpen ? 'rotate-180' : ''}`}></i>
+              {isServiceOpen && (
+                <div className="bg-white border border-zinc-200 shadow-2xl absolute top-[150%] right-[-100px] grid grid-cols-3 px-6 py-6 gap-8 rounded-lg min-w-[800px] z-[999]">
+                  {serviceCategories.map((category, index) => (
+                    <ul key={index}>
+                      <h3 className="text-[1rem] mb-3 font-bold text-[#1F5555] flex items-center">
+                        <i className={`${category.icon} mr-2`}></i>{category.title}
+                      </h3>
+                      {category.items.map((item, idx) => (
+                        <li key={idx} className="text-[0.85rem] ml-1 mb-2 hover:text-[#1F5555] cursor-pointer transition-colors font-medium">
+                          {item.name}
                         </li>
                       ))}
                     </ul>
-                  </div>
-                )}
-              </li>
+                  ))}
+                </div>
+              )}
+            </li>
 
-              <li className="cursor-pointer text-[1.1rem] p-2 border-b-2 border-transparent hover:border-[#1F5555] hover:bg-[#FFF9E6] rounded-t-md transition-all duration-300">
-                <i className="ri-information-line mr-2"></i>
-                <NavLink to="/about">About Us</NavLink>
-              </li>
-
-              <li className="cursor-pointer text-[1.1rem] p-2 border-b-2 border-transparent hover:border-[#1F5555] hover:bg-[#FFF9E6] rounded-t-md transition-all duration-300">
-                <i className="ri-question-line mr-2"></i>Enquire Now
-              </li>
-
-              <li
-                onClick={deskBlogHandler}
-                className="cursor-pointer text-[1.1rem] p-2 border-b-2 border-transparent hover:border-[#1F5555] hover:bg-[#FFF9E6] rounded-t-md transition-all duration-300 relative"
-              >
-                <i className="ri-article-line mr-2"></i>Blogs
-                <i className={`ri-arrow-down-s-fill ml-1 transition-transform duration-300 ${DeskBlogToggle ? 'rotate-180' : ''}`}></i>
-                <div ref={deskBlog} className="overflow-hidden h-[0px] border-1 border-transparent rounded-md px-2 py-2 pr-5 absolute top-[180%] left-0 bg-white shadow-lg min-w-[200px] hidden">
-                  <ul >
-                    {blogs.map((b, index) => {
-                      return (
-                        <li key={index} className="text-sm ml-3 mt-2 mb-1 whitespace-nowrap hover:text-[#1F5555] cursor-pointer transition-colors">
-                          <NavLink to={`/blogs/${b.name.toLowerCase().replace(" ", "-")}`}>
-                            <i className="mr-2 ri-book-marked-fill text-[#1F5555]"></i>{b.name}
-                          </NavLink>
-                        </li>
-                      );
-                    })}
+            <li onClick={handleSectorsToggle} className="relative cursor-pointer hover:text-[#1F5555] transition-all flex items-center">
+              Sectors <i className={`ri-arrow-down-s-line ml-0.5 transition-all ${isSectorsOpen ? 'rotate-180' : ''}`}></i>
+              {isSectorsOpen && (
+                <div className="absolute top-[150%] left-0 bg-white border border-zinc-200 shadow-xl rounded-md py-2 min-w-[180px] z-[999]">
+                  <ul className="flex flex-col font-medium">
+                    <li className="px-4 py-2 hover:bg-[#FFF9E6] hover:text-[#1F5555]">Infrastructure</li>
+                    <li className="px-4 py-2 hover:bg-[#FFF9E6] hover:text-[#1F5555]">Energy</li>
+                    <li className="px-4 py-2 hover:bg-[#FFF9E6] hover:text-[#1F5555]">Highways</li>
                   </ul>
                 </div>
-              </li>
-            </ul>
-
-            <button className="px-3 lg:px-4 rounded-lg py-1.5 lg:py-2 text-[0.9rem] lg:text-[1rem] border border-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-300 w-fit cursor-pointer whitespace-nowrap">
-              <i className="ri-quote-text mr-1 lg:mr-2"></i>Get Free Quote
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className="mt-2 sm:mt-3 bg-white h-0 overflow-hidden overflow-y-auto max-h-[80vh] transition-all duration-300" ref={slideMenu}>
-          <ul className="mobileMenu px-3 sm:px-4 flex flex-col gap-3 sm:gap-2 pb-4">
-            <li
-              className="text-[1rem] border-b-[2px] sm:text-[1.2rem] border-transparent hover:border-[#FCB714] p-2 rounded-md transition-all duration-200"
-              onClick={serviceClick}
-              ref={service}
-            >
-              <span className="cursor-pointer">
-                <i className="ri-tools-fill mr-2"></i>Services
-              </span>
-              <i className={`ri-arrow-down-s-fill cursor-pointer ml-2 transition-transform duration-300 ${toggle ? 'rotate-180' : ''}`}></i>
-              <div className="overflow-y-scroll service-menu h-0" ref={outerDiv}>
-                <div className="border border-zinc-400 w-full h-0 overflow-hidden rounded-md mt-2" ref={items}>
-                  {serviceCategories.map((category, index) => (
-                    <div key={index} className="p-4 sm:px-14">
-                      <ServiceHead head={category.title} />
-                      {category.items.map((item, idx) => (
-                        <ServiceItem key={idx} item={item.name} />
-                      ))}
-                    </div>
-                  ))}
-                  <img className="w-[60%] sm:w-[20rem] mx-auto" src={menu} alt="Menu Image" />
-                </div>
-              </div>
+              )}
             </li>
 
-            <li
-              className="text-[1rem] border-b-[2px] sm:text-[1.2rem] border-transparent hover:border-[#FCB714]  p-2 rounded-md transition-all duration-200"
-              ref={process}
-              onClick={processClick}
-            >
-              <span className="cursor-pointer">
-                <i className="ri-settings-3-line mr-2"></i>Process
-              </span>
-              <i className={`cursor-pointer ri-arrow-down-s-fill ml-2 transition-transform duration-300 ${toggle2 ? 'rotate-180' : ''}`}></i>
-              <div className="overflow-hidden pb-[0px] h-0" ref={proItems}>
-                <ul className="proMenu mt-2">
-                  {processItems.map((item, index) => (
-                    <li key={index} className="text-lg flex items-center p-2 hover:bg-[#FFF9E6] rounded-md">
-                      <i className={`${item.icon} text-xl mr-3 text-[#1F5555]`}></i>{item.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-
-            <li className="text-[1rem] sm:text-[1.2rem] border-b-[2px] border-transparent cursor-pointer hover:border-[#FCB714] p-2 transition-all duration-200">
-              <NavLink to="/about">About Us</NavLink>
-            </li>
-
-            <li className="text-[1rem] sm:text-[1.2rem] border-b-[2px] border-transparent cursor-pointer hover:border-[#FCB714] p-2 transition-all duration-200">
-              Enquire Now
-            </li>
-
-            <li
-              onClick={mobBlogHandler}
-              className="cursor-pointer text-[1rem] sm:text-[1.2rem] border-b-[2px] border-transparent hover:border-[#FCB714] p-2 transition-all duration-200"
-            >
-              Blogs
-              <i className={`cursor-pointer ri-arrow-down-s-fill ml-2 transition-transform duration-300 ${MobBlogToggle ? 'rotate-180' : ''}`}></i>
-              <div ref={mobBlogList} className="overflow-hidden pb-[0px] h-0">
-                <ul className="mt-2">
-                  {blogs.map((b, index) => {
-                    return (
-                      <li key={index} className="text-lg ml-3 mb-2 hover:text-[#1F5555] cursor-pointer transition-colors">
-                        <NavLink to={`/blogs/${b.name}`}>
-                          <i className="mr-2 ri-book-marked-fill text-[#1F5555]"></i>{b.name}
-                        </NavLink>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </li>
-
-            <button className="px-3 sm:text-[1.2rem] rounded-lg py-2 mt-5 text-[1rem] border border-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-300 w-fit cursor-pointer">
-              <i className="ri-quote-text mr-2"></i>Get Free Quote
-            </button>
+            <li className="cursor-pointer hover:text-[#1F5555] transition-all">Our Leadership</li>
+            <li className="cursor-pointer hover:text-[#1F5555] transition-all">Clientele</li>
+            <li className="cursor-pointer hover:text-[#1F5555] transition-all">Careers</li>
+            <li className="cursor-pointer hover:text-[#1F5555] transition-all whitespace-nowrap">Contact Us</li>
           </ul>
+
+
         </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className="bg-white h-0 overflow-hidden overflow-y-auto max-h-[85vh] transition-all duration-300" ref={slideMenu}>
+        <ul className="mobileMenu px-4 flex flex-col gap-2 pb-6 pt-4 font-bold text-zinc-800">
+          <li className="p-2 border-b border-zinc-50 hover:bg-zinc-50 transition-all">
+            <NavLink to="/" onClick={menuClick}>Home</NavLink>
+          </li>
+
+          <li className="flex flex-col p-2 border-b border-zinc-50">
+            <div className="flex justify-between items-center" onClick={() => setMobAboutToggle(!mobAboutToggle)}>
+              About Us <i className={`ri-arrow-down-s-line transition-all ${mobAboutToggle ? 'rotate-180' : ''}`}></i>
+            </div>
+            {mobAboutToggle && (
+              <ul className="pl-4 pt-2 flex flex-col gap-2 font-medium text-zinc-600 text-[0.95rem]">
+                <li onClick={menuClick}>Company Overview</li>
+                <li onClick={menuClick}>Our Mission</li>
+                <li onClick={menuClick}>Our Vision</li>
+              </ul>
+            )}
+          </li>
+
+          <li className="flex flex-col p-2 border-b border-zinc-50 text-[1rem]">
+            <div className="flex justify-between items-center" onClick={() => setMobServiceToggle(!mobServiceToggle)}>
+              Services <i className={`ri-arrow-down-s-line transition-all ${mobServiceToggle ? 'rotate-180' : ''}`}></i>
+            </div>
+            {mobServiceToggle && (
+              <div className="pl-2 pt-2 flex flex-col gap-4">
+                {serviceCategories.map((cat, i) => (
+                  <div key={i}>
+                    <h4 className="text-[0.95rem] text-[#1F5555] font-bold mb-1">{cat.title}</h4>
+                    <ul className="flex flex-col gap-1 pl-2 font-medium text-zinc-600 text-[0.9rem]">
+                      {cat.items.map((it, j) => (
+                        <li key={j} onClick={menuClick}>{it.name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+          </li>
+
+          <li className="flex flex-col p-2 border-b border-zinc-50">
+            <div className="flex justify-between items-center" onClick={() => setMobSectorsToggle(!mobSectorsToggle)}>
+              Sectors <i className={`ri-arrow-down-s-line transition-all ${mobSectorsToggle ? 'rotate-180' : ''}`}></i>
+            </div>
+            {mobSectorsToggle && (
+              <ul className="pl-4 pt-2 flex flex-col gap-2 font-medium text-zinc-600 text-[0.95rem]">
+                <li onClick={menuClick}>Infrastructure</li>
+                <li onClick={menuClick}>Energy</li>
+                <li onClick={menuClick}>Highways</li>
+              </ul>
+            )}
+          </li>
+
+          <li className="p-2 border-b border-zinc-50 hover:bg-zinc-50" onClick={menuClick}>Our Leadership</li>
+          <li className="p-2 border-b border-zinc-50 hover:bg-zinc-50" onClick={menuClick}>Clientele</li>
+          <li className="p-2 border-b border-zinc-50 hover:bg-zinc-50" onClick={menuClick}>Careers</li>
+          <li className="p-2 border-b border-zinc-50 hover:bg-zinc-50" onClick={menuClick}>Contact Us</li>
+
+
+        </ul>
       </div>
     </div>
   );
