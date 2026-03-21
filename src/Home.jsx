@@ -98,7 +98,7 @@ const Home = () => {
       </div>
       <div className="max-1700px mx-auto w-screen">
         <FormPage />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );
