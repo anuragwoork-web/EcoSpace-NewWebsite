@@ -8,7 +8,7 @@ import spon4 from '../../assets/spon4.png'
 
 const Footer = () => {
   return (
-    <footer className='grid item-center gap-8 w-[100vw] mt-25 md:grid-cols-2 lg:grid-cols-4 lg:px-4 max-w-[1700px] mx-auto'>
+    <footer className='grid item-center gap-8 w-[100vw] mt-10 md:mt-25 pt-16 pb-10 bg-[#FAFAFA] md:grid-cols-2 lg:grid-cols-4 lg:px-4 max-w-[1700px] mx-auto'>
       <div className='w-full flex flex-col items-center md:items-start gap-4 md:px-9'>
         <FootHead head='services' />
         <ul className='flex flex-col items-center md:items-start  gap-3'>

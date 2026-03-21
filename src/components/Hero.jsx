@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-import heroBg from "../assets/hero/hero-bg.jpg";
+import heroVideo from "../assets/hero/hero-bg.mp4";
 import CTA from "./CTA";
 
 const Hero = () => {
@@ -192,16 +192,17 @@ const Hero = () => {
             >
                 {/* The green textured background */}
                 <div className="absolute top-0 left-0 w-full h-full z-[-1] overflow-hidden">
-                    {/* Background Image Layer */}
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            backgroundImage: `url(${heroBg})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            opacity: bgImageOpacity
-                        }}
-                    ></div>
+                    {/* Background Video Layer */}
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
+                        style={{ opacity: bgImageOpacity }}
+                    >
+                        <source src={heroVideo} type="video/mp4" />
+                    </video>
                     {/* Black Overlay Layer (with Gradient) */}
                     <div
                         className="absolute inset-0"

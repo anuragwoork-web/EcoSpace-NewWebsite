@@ -14,6 +14,10 @@ import Dev from "./components/deve/Dev";
 import Latest from "./components/latest/Latest";
 import AboutSection from "./components/AboutSection";
 import SectorsSection from "./components/SectorsSection";
+import FullVideoSection from "./components/FullVideoSection";
+import StatsSection from "./components/StatsSection";
+import TestimonialSection from "./components/TestimonialSection";
+import ClientsSection from "./components/ClientsSection";
 import Header from './Header'
 const Home = () => {
   let service = useRef();
@@ -86,10 +90,10 @@ const Home = () => {
           <AboutSection />
           <CardPage />
           <SectorsSection />
-          <Page1 />
-          <Solutions />
-          <Dev />
-          <Latest />
+          <FullVideoSection />
+          <StatsSection />
+          <TestimonialSection />
+          <ClientsSection />
         </div>
       </div>
       <div className="max-1700px mx-auto w-screen">
